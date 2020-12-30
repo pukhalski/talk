@@ -85,8 +85,16 @@ export async function verifyAndRetrieveUser(
 
   try {
     // Try to verify the token.
+    // eslint-disable-next-line no-console
+    console.log(`Try to verify the token.`);
+    // eslint-disable-next-line no-console
+    console.log("Tenant", tenant);
+    // eslint-disable-next-line no-console
+    console.log("Token", token);
     for (const verifier of verifiers) {
       if (verifier.supports(token, tenant)) {
+        // eslint-disable-next-line no-console
+        console.log(`JWT supported by verifier`, verifier);
         return await verifier.verify(
           tokenString,
           token,
