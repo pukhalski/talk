@@ -273,7 +273,8 @@ export class SSOVerifier implements Verifier<SSOToken> {
     kid?: string
   ): token is SSOToken {
     // TODO: [CORL-755] (wyattjoh) check that the `kid` it provided and matches a given kid in a future release
-
+    // eslint-disable-next-line no-console
+    console.log(`SSO support test`, tenant.auth.integrations.sso.enabled, isSSOToken(token));
     return tenant.auth.integrations.sso.enabled && isSSOToken(token);
   }
 
@@ -285,6 +286,8 @@ export class SSOVerifier implements Verifier<SSOToken> {
     kid?: string
   ) {
     const integration = tenant.auth.integrations.sso;
+    // eslint-disable-next-line no-console
+    console.log(`SSO verification`, integration.enabled, tenant.auth.integrations.sso);
     if (!integration.enabled) {
       throw new IntegrationDisabled("sso");
     }
@@ -296,6 +299,8 @@ export class SSOVerifier implements Verifier<SSOToken> {
       now,
       kid
     );
+    // eslint-disable-next-line no-console
+    console.log(`SSO keys`, keys);
     if (keys.length === 0) {
       throw new TokenInvalidError(
         tokenString,
@@ -310,6 +315,8 @@ export class SSOVerifier implements Verifier<SSOToken> {
       // return a config because we validated it's length in the loop predicate.
       const key = keys.shift()!;
 
+      // eslint-disable-next-line no-console
+      console.log(`Trying with key`, key);
       try {
         verifyJWT(
           tokenString,

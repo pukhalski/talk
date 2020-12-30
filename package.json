@@ -417,11 +417,6 @@
       "https://github.com/DefinitelyTyped/DefinitelyTyped/issues/47686"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "FAST_LINT=true lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{j,t}s{,x}": [
       "eslint"

@@ -447,6 +447,8 @@ export function verifyJWT(
   options: Omit<VerifyOptions, "algorithms" | "clockTimestamp"> = {}
 ) {
   try {
+    // eslint-disable-next-line no-console
+    console.log(`Verifying jwt`, tokenString, secret, options, algorithm);
     return jwt.verify(tokenString, secret, {
       ...options,
       algorithms: [algorithm],
