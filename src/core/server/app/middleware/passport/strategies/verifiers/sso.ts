@@ -66,6 +66,8 @@ export interface SSOToken {
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function isSSOToken(token: SSOToken | object): token is SSOToken {
   const { error } = SSOTokenSchema.validate(token, { allowUnknown: true });
+  // eslint-disable-next-line no-console
+  console.log(`SSO schema validation error`, error);
   return isNil(error);
 }
 
